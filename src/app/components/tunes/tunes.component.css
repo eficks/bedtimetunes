@@ -1,0 +1,21 @@
+.list-group {
+  background: none;
+}
+.list-group, .list-group-item{
+  padding: 5px;
+    background: none;
+    border:none;
+}
+.nonactive {
+  background-color: rgba(0, 0, 0,.75);
+}
+ .active{
+  padding: 0px;
+  background-color: rgba(20, 20, 50,.75);
+}
+.list-group-item a {
+  padding: 10px;
+}
+  .play-this {
+    position: absolute; right: 20px; bottom: 18px; font-size: 20px; float: right;
+  }

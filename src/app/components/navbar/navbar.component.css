@@ -1,0 +1,8 @@
+.navbar {
+  background: rgba(0,0,0,.5);
+}
+@media (max-width: 767px) {
+  .navbar-collapse {
+      background: rgba(0,0,0,.85);
+  }
+}
