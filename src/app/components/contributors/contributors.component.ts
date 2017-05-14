@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
+import { Router }                 from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -6,4 +7,18 @@ import { Component } from '@angular/core';
   templateUrl: './contributors.component.html',
   styleUrls:  ['./contributors.component.css']
 })
-export class ContributorsComponent {}
+export class ContributorsComponent {
+@HostBinding('style.display')   display = 'inline';
+@HostBinding('style.position')  position = 'relative';
+constructor(private router: Router) {}
+
+cancel() {
+   this.closePopup();
+ }
+ closePopup() {
+  // Providing a `null` value to the named outlet
+  // clears the contents of the named outlet
+  this.router.navigate([{ outlets: { popup: null }}]);
+}
+
+}

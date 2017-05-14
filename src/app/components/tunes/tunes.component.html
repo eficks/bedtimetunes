@@ -1,38 +1,49 @@
-﻿<div class="main">
-  <div class="container" style="padding-top: 100px;">
+﻿<div class="main" id="playlist">
+  <div class="container">
     <!-- List -->
       <ul class="list-group">
-        <li class="list-group-item">
-          <a href="#" class="list-group-item active">
-            <h4 class="list-group-item-heading">Song Title - Artist</h4>
-            <p class="list-group-item-text">Thurday 11th of May, 2017</p>
+        <li *ngFor="let item of sources; let $index = index"
+            (click)="onClickPlaylistItem(item, $index)"
+            [class.selected]="item === currentItem"  class="list-group-item">
+          <a class="list-group-item nonactive">
+
+            <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }} </h4>
+            <p class="list-group-item-text">{{ item.id }} {{ item.type }}</p>
             <div class="play-this">
               <i class="fa fa-play" aria-hidden="true"></i>
             </div>
           </a>
         </li>
-        <li class="list-group-item">
-          <a href="#" class="list-group-item nonactive">
-            <h4 class="list-group-item-heading">Song Title - Artist</h4>
-            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          </a>
-        </li>
-        <li class="list-group-item">
-          <a href="#" class="list-group-item nonactive">
-            <h4 class="list-group-item-heading">Song Title - Artist</h4>
-            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          </a>
-        </li>
       </ul>
-    <div>
-      <h2>{{master}} controls {{sources.length}} sources</h2>
-      <ul>
-        <li *ngFor="let item of sources; let $index = index"
-            (click)="onClickPlaylistItem(item, $index)"
-            [class.selected]="item === currentItem">
-            {{ item.src }}
-        </li>
-      </ul>
-    </div>
+  </div>
+</div>
+<div class="now-playing" style="z-index:10000000000000000000;">
+  <h6>Now playing: {{currentItem.artist}} - {{currentItem.title}}</h6>
+</div>
+<div class="main" id="player">
+  <div class="container">
+    <vg-player (onPlayerReady)="onPlayerReady($event)" id="mediaOne" style="height: 50px;">
+
+      <vg-controls>
+          <vg-play-pause></vg-play-pause>
+
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+          <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          </vg-scrub-bar>
+          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+          <vg-volume></vg-volume>
+          <vg-mute></vg-mute>
+      </vg-controls>
+      <audio
+              #mediaOne
+              [vgMedia]="mediaOne"
+              id="mediaOne"
+              crossorigin
+              [src]="currentItem.src">
+      </audio>
+    </vg-player>
   </div>
 </div>

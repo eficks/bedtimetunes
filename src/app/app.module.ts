@@ -11,7 +11,6 @@ import { VgBufferingModule } from 'videogular2/buffering';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TunesComponent } from './components/tunes/tunes.component';
-import { PlaybarComponent } from './components/playbar/playbar.component';
 import { ContributorsComponent } from './components/contributors/contributors.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { VideoBgComponent } from './components/videobg/videobg.component';
@@ -19,7 +18,7 @@ import { VideoBgComponent } from './components/videobg/videobg.component';
 const routes: Routes = [
   { path: '', redirectTo: '/tunes', pathMatch: 'full' },
   { path: 'tunes',  component: TunesComponent },
-  { path: 'contributors', component: ContributorsComponent },
+  { path: 'contributors', component: ContributorsComponent, outlet: 'popup' },
   { path: 'pagenotfound', component: PageNotFoundComponent},
   { path: '**', redirectTo: 'pagenotfound' }
 ];
@@ -28,7 +27,6 @@ const routes: Routes = [
     AppComponent,
     NavbarComponent,
     TunesComponent,
-    PlaybarComponent,
     PageNotFoundComponent,
     VideoBgComponent,
     ContributorsComponent

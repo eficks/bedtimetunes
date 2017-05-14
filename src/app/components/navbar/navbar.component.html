@@ -15,7 +15,7 @@
         <li data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <a routerLink="/tunes" routerLinkActive="active">Tunes</a></li>
         <li data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <a routerLink="/contributors" routerLinkActive="active">Contributors</a></li>
+          <a [routerLink]="[{ outlets: { popup: ['contributors'] } }]">Contributors</a></li>
         <li><a href="">Contact</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
