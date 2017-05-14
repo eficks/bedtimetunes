@@ -1,6 +1,5 @@
-<div class="main">
+﻿<div class="main">
   <div class="container" style="padding-top: 100px;">
-
     <!-- List -->
       <ul class="list-group">
         <li class="list-group-item">
@@ -25,7 +24,15 @@
           </a>
         </li>
       </ul>
-      <input *ngFor="let audio of sources" [value]="audio.title"/>
-
+    <div>
+      <h2>{{master}} controls {{sources.length}} sources</h2>
+      <ul>
+        <li *ngFor="let item of sources; let $index = index"
+            (click)="onClickPlaylistItem(item, $index)"
+            [class.selected]="item === currentItem">
+            {{ item.src }}
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

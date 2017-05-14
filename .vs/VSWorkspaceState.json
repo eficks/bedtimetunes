@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\components",
+    "\\src\\app\\components\\playbar",
+    "\\src\\app\\components\\tunes"
+  ],
+  "SelectedNode": "\\src\\app\\components\\tunes\\tunes.component.ts",
+  "PreviewInSolutionExplorer": false
+}

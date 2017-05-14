@@ -1,34 +1,31 @@
-<div class="main">
+﻿<div class="main">
   <div class="container">
+    <li *ngFor="let item of sources">
+      {{ item.src }}
+
+
     <vg-player (onPlayerReady)="onPlayerReady($event)" id="mediaOne" style="height: 50px;">
-          <vg-controls>
-              <vg-play-pause></vg-play-pause>
+      <vg-controls>
+          <vg-play-pause></vg-play-pause>
 
-              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
 
-              <vg-scrub-bar>
-                  <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-                  <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-              </vg-scrub-bar>
+          <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+          </vg-scrub-bar>
 
-              <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-              <vg-mute></vg-mute>
-          </vg-controls>
-          <audio #mediaOne [vgMedia]="mediaOne" id="mediaOne" crossorigin >
-              <source *ngFor="let audio of sources" [src]="currentItem.src" [type]="currentItem.type">
-          </audio>
+          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+          <vg-mute></vg-mute>
+      </vg-controls>
+      <audio
+              *ngFor="let item of sources"
+              #mediaOne
+              [vgMedia]="mediaOne"
+              id="mediaOne"
+              crossorigin
+              [src]="item.src">
+      </audio>
     </vg-player>
   </div>
-</div>
-<div>
-  <ul>
-    Now playing: {{ currentItem.title }}
-
-    <li *ngFor="let item of sources; let $index = index"
-        (click)="onClickPlaylistItem(item, $index)"
-        [class.selected]="item === currentItem">
-        {{ item.src }}
-    </li>
-  </ul>
-
 </div>
