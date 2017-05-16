@@ -1,15 +1,16 @@
 ﻿<div class="main" id="playlist">
   <div class="container">
     <!-- List -->
+      Previously Playing: {{ previousItem.title }}      {{ nowPlaying }}<br>
+      Now Playing: {{ currentItem.title }}      {{ currentItem.id }}
       <ul class="list-group">
         <li *ngFor="let item of sources; let $index = index"
-            (click)="onClickPlaylistItem(item, $index)"
+            (click)="onClickPlaylistItem(item, $index, nowPlaying)"
             [class.selected]="item === currentItem"  class="list-group-item">
           <a class="list-group-item nonactive">
-
             <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }} </h4>
             <p class="list-group-item-text">{{ item.id }} {{ item.type }}</p>
-            <div class="play-this">
+            <div class="play-this" id="playlist_item_{{ item.id }}">
               <i class="fa fa-play" aria-hidden="true"></i>
             </div>
           </a>
@@ -18,7 +19,7 @@
   </div>
 </div>
 <div class="now-playing" style="z-index:10000000000000000000;">
-  <h6>Now playing: {{currentItem.artist}} - {{currentItem.title}}</h6>
+  <h6>Now playing: {{currentItem.id}} {{currentItem.artist}} - {{currentItem.title}}</h6>
 </div>
 <div class="main" id="player">
   <div class="container">
@@ -40,7 +41,7 @@
       <audio
               #mediaOne
               [vgMedia]="mediaOne"
-              id="mediaOne"
+              id="mediaOne2"
               crossorigin
               [src]="currentItem.src">
       </audio>
