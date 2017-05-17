@@ -23,27 +23,57 @@
 .list-group {
   background: none;
   margin-bottom: 0px;
+  padding: 10px 0;
+
 }
 .list-group, .list-group-item{
-  padding: 5px;
+  padding: 0px 0px 10px 0px;
     background: none;
     border:none;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
 }
+
 .nonactive {
   background-color: rgba(28, 30, 34,.75);
 }
- .nonactive{
-  padding: 0px;
-  background-color: rgba(20, 20, 50,.85);
+.nonactive{
+ padding: 0px;
+ background-color: rgba(20, 20, 50,.75);
+}
+.nonactive:hover{
+ padding: 0px;
+ background-color: rgba(0, 0, 0,.75);
+}
+.selected {
+  background-color: rgba(0, 0, 0,.5);
 }
 .list-group-item a {
-  padding: 10px;
+  font-size: 10px;
 }
-  .play-this {
-    position: absolute; right: 20px; bottom: 18px; font-size: 20px; float: right;
-  }
+.list-group-item .nonactive {
+  padding: 10px;
 
+}
+.play-this {
+  position: absolute; right: 20px; bottom: 16px; font-size: 20px; float: right;
+}
+.progressbar {
+  position: absolute;
+  top: 0px;
+  padding: 0px !important;
+  margin: 0px !important;
+  display: block !important;
+  width: 100%;
+  height: 57px;
+  z-index: -1;
 
+}
+.progressbar_time {
+  height: 100%;
+  position: relative;
+  background: rgb(228,245,252); /* Old browsers */
+}
 
   body {
     /* Margin bottom by footer height */
@@ -57,7 +87,7 @@
     /* Set the fixed height of the footer here */
   }
   vg-player {
-    height: 50px;
+    height: 150px;
     background-color: rgba(20, 20, 50,.5);
     position: fixed;
     right: 0;

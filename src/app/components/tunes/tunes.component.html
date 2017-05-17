@@ -1,42 +1,47 @@
 ﻿<div class="main" id="playlist">
   <div class="container">
     <!-- List -->
-      Previously Playing: {{ previousItem.title }}      {{ nowPlaying }}<br>
-      Now Playing: {{ currentItem.title }}      {{ currentItem.id }}
+      <br>
+
       <ul class="list-group">
         <li *ngFor="let item of sources; let $index = index"
             (click)="onClickPlaylistItem(item, $index, nowPlaying)"
-            [class.selected]="item === currentItem"  class="list-group-item">
-          <a class="list-group-item nonactive">
+             class="list-group-item">
+          <a class="list-group-item nonactive" [class.selected]="item === currentItem" >
             <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }} </h4>
-            <p class="list-group-item-text">{{ item.id }} {{ item.type }}</p>
+            <p class="list-group-item-text">January 26, 2018
+              Tags: <b>Blues, Rock, Loud, Drums, Live</b>
+              <a href="linktospotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>
+              <a href="linktoyoutube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            </p>
             <div class="play-this" id="playlist_item_{{ item.id }}">
               <i class="fa fa-play" aria-hidden="true"></i>
             </div>
           </a>
+          <div class="progressbar" id="progress_item_{{ item.id }}">
+          </div>
         </li>
       </ul>
   </div>
 </div>
-<div class="now-playing" style="z-index:10000000000000000000;">
-  <h6>Now playing: {{currentItem.id}} {{currentItem.artist}} - {{currentItem.title}}</h6>
+<div class="now-playing" style="width: 100%; z-index:10000000000000000000;">
+  <h6>Now playing: <b>{{currentItem.artist}} - {{currentItem.title}}</b></h6>
 </div>
 <div class="main" id="player">
   <div class="container">
     <vg-player (onPlayerReady)="onPlayerReady($event)" id="mediaOne" style="height: 50px;">
 
       <vg-controls>
-          <vg-play-pause></vg-play-pause>
+        <vg-play-pause></vg-play-pause>
 
-          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+        <vg-scrub-bar [vgFor]="mediaOne2">
+            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
 
-          <vg-scrub-bar>
-              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-          </vg-scrub-bar>
-          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-          <vg-volume></vg-volume>
-          <vg-mute></vg-mute>
+        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+        <vg-mute></vg-mute>
       </vg-controls>
       <audio
               #mediaOne
