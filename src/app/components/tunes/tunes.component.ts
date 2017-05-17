@@ -87,7 +87,7 @@ export class TunesComponent {
 
   playVideo() {
       this.nowPlaying = this.currentIndex;
-      console.log("firstLoad" + this.firstLoad);
+      console.log("firstLoad" + this.firstLoad); 
 
       if (this.firstLoad == 0) {
 
