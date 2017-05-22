@@ -2,30 +2,28 @@
   <div class="container">
     <!-- List -->
       <br>
-
       <ul class="list-group">
-        <li *ngFor="let item of sources; let $index = index"
+        <li *ngFor="let item of heroes; let $index = index"
             (click)="onClickPlaylistItem(item, $index, nowPlaying)"
              class="list-group-item">
           <a class="list-group-item nonactive" [class.selected]="item === currentItem" >
-            <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }} </h4>
+            <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }}</h4>
             <p class="list-group-item-text">January 26, 2018
               Tags: <b>Blues, Rock, Loud, Drums, Live</b>
               <a href="linktospotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>
               <a href="linktoyoutube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
             </p>
-            <div class="play-this" id="playlist_item_{{ item.id }}">
+            <div class="play-this" id="playlist_item_{{ $index }}">
               <i class="fa fa-play" aria-hidden="true"></i>
             </div>
           </a>
-          <div class="progressbar" id="progress_item_{{ item.id }}">
+          <div class="progressbar" id="progress_item_{{ $index }}">
           </div>
         </li>
       </ul>
   </div>
 </div>
 <div class="now-playing" style="width: 100%; z-index:10000000000000000000;">
-  <h6>Now playing: <b>{{currentItem.artist}} - {{currentItem.title}}</b></h6>
 </div>
 <div class="main" id="player">
   <div class="container">
@@ -48,7 +46,7 @@
               [vgMedia]="mediaOne"
               id="mediaOne2"
               crossorigin
-              [src]="currentItem.src">
+              [src]="'/assets/music/' + currentItem.artist + '%20-%20' + currentItem.title + '.mp3'"><
       </audio>
     </vg-player>
   </div>

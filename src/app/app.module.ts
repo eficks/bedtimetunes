@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { Router } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { VgCoreModule } from 'videogular2/core';
@@ -14,6 +14,7 @@ import { TunesComponent } from './components/tunes/tunes.component';
 import { ContributorsComponent } from './components/contributors/contributors.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { VideoBgComponent } from './components/videobg/videobg.component';
+import { TunesService } from './components/tunes/tunes.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/tunes', pathMatch: 'full' },
@@ -39,12 +40,15 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-
+    JsonpModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  providers: [
+      TunesService
+  ],
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration
