@@ -20,10 +20,12 @@ import 'rxjs/add/operator/toPromise';
 })
 
 export class TunesComponent implements OnInit {
+  currentIndex = 0;
   heroes: Array<Object>;
   constructor(http: Http, private tunesService: TunesService) {
     this.tunesService.getTunes().subscribe(heroes => {
       this.heroes = heroes;
+      this.currentItem = this.heroes[this.currentIndex];
     });
   }
 
@@ -31,11 +33,10 @@ export class TunesComponent implements OnInit {
   currentTime: number  = 0;
   duration: number = 0;
   percentPlayed: number  = 0;
-  currentIndex = 0;
   previousIndex = 0;
   nowPlaying = 0;
   firstLoad = 0;
-  state = 'paused';
+  state = 'playing';
   previousItem: Object;
   currentItem: Object;
   api: VgAPI;
@@ -54,7 +55,7 @@ export class TunesComponent implements OnInit {
           this.duration = this.api.duration;
           this.percentPlayed = this.currentTime / this.duration * 100;
           let progressbar_style = <HTMLElement> document.querySelector("#progress_item_" + this.currentIndex);
-          progressbar_style.innerHTML = '<div class="progressbar_time" style="height: 100%; position: relative; background: rgba(255,255,255,.25); width: ' + this.percentPlayed + '%;"></div>';
+          progressbar_style.innerHTML = '<div class="progressbar_time" style="height: 100%; position: relative;   background-color: rgba(20, 20, 50, 1); width: ' + this.percentPlayed + '%;"></div>';
         }
       );
       this.api.getDefaultMedia().subscriptions.pause.subscribe(
@@ -71,6 +72,8 @@ export class TunesComponent implements OnInit {
           playState.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
           }
         );
+        this.api.play();
+
       };
 
   nextVideo() {
@@ -93,7 +96,7 @@ export class TunesComponent implements OnInit {
 
   playVideo() {
       this.nowPlaying = this.currentIndex;
-        this.api.play()
+      this.api.play()
       this.firstLoad++;
   }
 

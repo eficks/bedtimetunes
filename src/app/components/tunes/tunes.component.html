@@ -2,7 +2,7 @@
   <div class="container">
     <!-- List -->
       <br>
-      <ul class="list-group">
+      <ul class="list-group" *ngIf="currentItem; else elseBlock">
         <li *ngFor="let item of heroes; let $index = index"
             (click)="onClickPlaylistItem(item, $index, nowPlaying)"
              class="list-group-item">
@@ -10,8 +10,6 @@
             <h4 class="list-group-item-heading">{{ item.artist }} - {{ item.title }}</h4>
             <p class="list-group-item-text">January 26, 2018
               Tags: <b>Blues, Rock, Loud, Drums, Live</b>
-              <a href="linktospotify"><i class="fa fa-spotify" aria-hidden="true"></i></a>
-              <a href="linktoyoutube"><i class="fa fa-youtube" aria-hidden="true"></i></a>
             </p>
             <div class="play-this" id="playlist_item_{{ $index }}">
               <i class="fa fa-play" aria-hidden="true"></i>
@@ -21,11 +19,27 @@
           </div>
         </li>
       </ul>
+      <ng-template #elseBlock>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a class="list-group-item nonactive">
+              <h4 class="list-group-item-heading">
+                Tunes are loading...
+              </h4>
+              <p class="list-group-item-text">
+                Please wait.
+              </p>    
+            </a>
+          </li>
+        </ul>
+      </ng-template>
+
   </div>
 </div>
-<div class="now-playing" style="width: 100%; z-index:10000000000000000000;">
+<div *ngIf="currentItem" class="now-playing" style="width: 100%; z-index:10000000000000000000;">
+  <h6>Now playing: <b>{{currentItem.artist}} - {{currentItem.title}}</b></h6>
 </div>
-<div class="main" id="player">
+<div class="main" id="player"  *ngIf="currentItem" >
   <div class="container">
     <vg-player (onPlayerReady)="onPlayerReady($event)" id="mediaOne" style="height: 50px;">
 
@@ -41,7 +55,7 @@
         <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
         <vg-mute></vg-mute>
       </vg-controls>
-      <audio
+      <audio  *ngIf="currentItem"
               #mediaOne
               [vgMedia]="mediaOne"
               id="mediaOne2"
